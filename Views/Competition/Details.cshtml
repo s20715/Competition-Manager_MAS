@@ -1,0 +1,90 @@
+﻿@model CompetitionManager.Models.Competition
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Competition</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Rulebook.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rulebook.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RegistrationStartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegistrationStartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RegistrationEndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegistrationEndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentCompetitionState)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrentCompetitionState)
+        </dd>
+    </dl>
+    <h4>Competition helpers</h4>
+    <dl>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Name</th>
+                    <th>Surname</th>
+                </tr>
+                @foreach (var item in Model.Helpers)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+
+    </dl>
+</div>
+<p>@Html.ActionLink("Create New helper", "../Helper/CreateOnCompetition")</p>
+<p>
+    
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
