@@ -9,10 +9,21 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@if (Model.Count() == 0)
+{
+    <p>There are no competitions in the database.</p>
+}
+else { 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Game.Name)
+            Game name
+        </th>
+        <th>
+            Organizer name
+        </th>
+        <th>
+            Organizer surname
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Rulebook.Description)
@@ -35,35 +46,43 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Game.Name)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Rulebook.Description)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.RegistrationStartDate)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.RegistrationEndDate)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.StartDate)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.EndDate)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.CurrentCompetitionState)
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-    </td>
-</tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.Game.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.MainOrganizer.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.MainOrganizer.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rulebook.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegistrationStartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegistrationEndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CurrentCompetitionState)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
 
 </table>
+}

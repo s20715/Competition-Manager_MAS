@@ -9,6 +9,7 @@ namespace CompetitionManager.Models
 {
     public class Captain : Player
     {
+        [Required]
         public int TelephoneNumber { get; set; }
         public virtual Team Team { get; set; }
     }

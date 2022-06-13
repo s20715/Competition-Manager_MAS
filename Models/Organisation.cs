@@ -12,7 +12,28 @@ namespace CompetitionManager.Models
         [ForeignKey("MainOrganizer")]
         public int OrganisationId { get; set; }
         public string Name { get; set; }
-        public List<int> TelephoneNumbers { get; set; }
+
+        [NotMapped]
+        public List<int> TelephoneNumbers
+        {
+            get
+            {
+                var list=AllNumbers.Split(';').ToList<string>();
+                return list.Select(int.Parse).ToList();
+            }
+            set
+            {
+                string creatorsString = "";
+                foreach (int s in value)
+                {
+                    creatorsString += s + ';';
+                }
+                creatorsString.Remove(creatorsString.Length - 1);
+                AllNumbers = creatorsString;
+            }
+        }
+        [Required]
+        public string AllNumbers { get; set; }
         [Required]
         public virtual MainOrganizer MainOrganizer { get; set; }
         /*

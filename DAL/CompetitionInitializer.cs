@@ -7,7 +7,7 @@ using CompetitionManager.Models;
 
 namespace CompetitionManager.DAL
 {
-    public class CompetitionInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<CompetitionContext>
+    public class CompetitionInitializer : System.Data.Entity.DropCreateDatabaseAlways<CompetitionContext>
     {
 
         protected override void Seed(CompetitionContext context)
@@ -27,7 +27,7 @@ namespace CompetitionManager.DAL
             helpers.ForEach(x => context.Helpers.Add(x));
             context.SaveChanges();
             
-            var game = new Game { ID = 1, Name = "Counter strike", ReleaseDate = DateTime.Parse("2008-01-05") };
+            var game = new Game { ID = 1, Name = "Counter strike", ReleaseDate = new DateTime(2010, 3, 1, 7, 0, 0).Date };
             context.Games.Add(game);
             context.SaveChanges();
 
@@ -44,9 +44,9 @@ namespace CompetitionManager.DAL
             
 
             var competitions = new List<Competition> {
-                new Competition{ID=1,Game=game,RegistrationStartDate=new DateTime(1939, 3, 1, 7, 0, 0).Date,Rulebook =rulebook1,MainOrganizer=mainOrganizer1},
-                new Competition{ID=2,Game=game,RegistrationStartDate=new DateTime(1940, 3, 1, 7, 0, 0).Date,Rulebook=rulebook1,MainOrganizer=mainOrganizer1},
-                new Competition{ID=3,Game=game,RegistrationStartDate=new DateTime(1941, 3, 1, 7, 0, 0).Date,RegistrationEndDate=new DateTime(1939, 5, 1, 7, 0, 0).Date,StartDate=new DateTime(1939, 6, 1, 7, 0, 0).Date,EndDate=new DateTime(1939, 7, 1, 7, 0, 0).Date,Rulebook=rulebook1,MainOrganizer=mainOrganizer1}
+                new Competition{ID=1,Game=context.Games.Find(1),RegistrationStartDate=new DateTime(1939, 3, 1, 7, 0, 0).Date,Rulebook =rulebook1,MainOrganizer=mainOrganizer1},//nie uda sie zapisać zmian bez MainOragnizer
+                new Competition{ID=2,Game=context.Games.Find(1),RegistrationStartDate=new DateTime(1940, 3, 1, 7, 0, 0).Date,Rulebook=rulebook1,MainOrganizer=mainOrganizer1},
+                new Competition{ID=3,Game=context.Games.Find(1),RegistrationStartDate=new DateTime(1941, 3, 1, 7, 0, 0).Date,RegistrationEndDate=new DateTime(1939, 5, 1, 7, 0, 0).Date,StartDate=new DateTime(1939, 6, 1, 7, 0, 0).Date,EndDate=new DateTime(1939, 7, 1, 7, 0, 0).Date,Rulebook=rulebook1,MainOrganizer=mainOrganizer1}
             };
             competitions.ForEach(x => context.Competitions.Add(x));
             context.SaveChanges();
@@ -55,6 +55,7 @@ namespace CompetitionManager.DAL
             context.SaveChanges();
             
         }
+        
     
 
     }

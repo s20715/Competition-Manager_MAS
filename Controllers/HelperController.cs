@@ -49,11 +49,19 @@ namespace CompetitionManager.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,PESEL,Address,Email,FirstName,LastName")] Helper helper)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Helpers.Add(helper);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Helpers.Add(helper);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (DataException /* dex */)
+            {
+                //Log the error (uncomment dex variable name and add a line here to write a log.
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
 
             return View(helper);
@@ -91,11 +99,15 @@ namespace CompetitionManager.Controllers
         }
 
         // GET: Helper/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? id, bool? saveChangesError = false)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            if (saveChangesError.GetValueOrDefault())
+            {
+                ViewBag.ErrorMessage = "Delete failed. Try again, and if the problem persists see your system administrator.";
             }
             Helper helper = db.Helpers.Find(id);
             if (helper == null)

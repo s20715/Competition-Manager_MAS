@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -16,7 +17,8 @@ namespace CompetitionManager.Models
             this.Contributions = new List<Contribution>();
         }
         public int ID { get; set; }
-        public Game Game { get; set; }
+        [Required]
+        public virtual Game Game { get; set; }
         [DataType(DataType.Date)]
         public DateTime RegistrationStartDate { get; set; }
         [DataType(DataType.Date)]
@@ -25,9 +27,10 @@ namespace CompetitionManager.Models
         public DateTime? StartDate { get; set; }
         [DataType(DataType.Date)]
         public DateTime? EndDate { get; set; }
-
+        [Required]
         public string CurrentCompetitionState { get; set; }
         public virtual Rulebook Rulebook { get; set; }
+        [Required]
         public virtual MainOrganizer MainOrganizer { get; set; }
 
         public virtual ICollection<Helper> Helpers { get; set; }

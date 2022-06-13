@@ -9,6 +9,8 @@ namespace CompetitionManager.Models
 {
     public class Partnership
     {
+        [ForeignKey("Team")]
+        public int TeamID { get; set; }
         [ForeignKey("Player")]
         public int ID { get; set; }
         [DataType(DataType.Date)]

@@ -12,7 +12,10 @@ namespace CompetitionManager.Models
         [StringLength(11)]
         [Index(IsUnique = true)]
         public string PESEL { get; set; }
+        [Required]
         public string Address { get; set; }
+        [Required]
         public string Email { get; set; }
+        
     }
 }

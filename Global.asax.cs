@@ -16,6 +16,8 @@ namespace CompetitionManager
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            System.Diagnostics.Debug.WriteLine("Global.asax");
+            System.Diagnostics.Debug.WriteLine("Global.asax");
         }
     }
 }
