@@ -13,6 +13,7 @@ namespace CompetitionManager.Models
         public decimal Amount { get; set; }
         [Required]
         public string Contributor { get; set; }
+        [Required]
         public virtual Competition Competition { get; set; }
     }
 }

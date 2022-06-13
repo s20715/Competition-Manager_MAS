@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CompetitionManager.DAL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -15,9 +16,30 @@ namespace CompetitionManager.Models
             this.Partnerships = new HashSet<Partnership>();
             this.Matches = new HashSet<Match>();
         }
-        public static int MaxPlayers { get; set; }
-        public static int MinPlayers { get; set; }
-        public virtual Captain Captain { get; set; }
+        private Team(CompetitionContext context)
+        {
+            Context = context;
+            this.Partnerships = new HashSet<Partnership>();
+            this.Matches = new HashSet<Match>();
+        }
+        private CompetitionContext Context { get; set; }
+
+        public static int MaxPlayers { get {
+                return 6;
+            }  }
+        public static int MinPlayers { get {
+                return 5;
+            } }
+        private Captain captain;
+        public virtual Captain Captain { get {
+                return captain;
+            } 
+            set {
+                if (Context.Partnerships.Any(x => x.Player.ID == value.ID))
+                    throw new Exception("XOR exception");
+                else
+                    captain = value;
+            } }
         public virtual ICollection<Partnership> Partnerships { get; set; }
         public virtual ICollection<Match> Matches { get; set; }
     }

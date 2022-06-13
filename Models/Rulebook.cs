@@ -11,6 +11,8 @@ namespace CompetitionManager.Models
     {
         [ForeignKey("Competition")]
         public int ID { get; set; }
+        [Required]
+        [MaxLength(2000)]
         public string Description { get; set; }
 
         [NotMapped]

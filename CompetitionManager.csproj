@@ -149,7 +149,6 @@
     <Compile Include="Models\Helper.cs" />
     <Compile Include="Models\Administrator.cs" />
     <Compile Include="Models\Person.cs" />
-    <Compile Include="Models\Creator.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

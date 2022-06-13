@@ -14,6 +14,10 @@ namespace CompetitionManager.Controllers
     public class CompetitionController : Controller
     {
         private CompetitionContext db = new CompetitionContext();
+        public CompetitionController()
+        {
+            System.Diagnostics.Debug.WriteLine("aasdasdasdsadasdsadsadsadx");
+        }
         
         // GET: Competition
         public ActionResult Index()
@@ -121,6 +125,10 @@ namespace CompetitionManager.Controllers
             db.Competitions.Remove(competition);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+        public void Test()
+        {
+            System.Diagnostics.Debug.WriteLine("Controller-------------------------------------------");
         }
 
         protected override void Dispose(bool disposing)

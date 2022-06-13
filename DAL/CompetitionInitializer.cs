@@ -39,14 +39,13 @@ namespace CompetitionManager.DAL
 
             var rulebook1 = new Rulebook { ID = 1, Description = "A rulebook of a LAN in Sosnowiec 1939-45", Creators = creators };
             context.Rulebooks.Add(rulebook1);
-            var mainOrganizer1 = new MainOrganizer { ID = 6, PESEL = "33344422211", Address = "ul. Wolfkego", Email = "org@gmail.com", FirstName = "Organizeusz", LastName = "Nowak" };
+            var mainOrganizer1 = new MainOrganizer {PESEL = "33344422211", Address = "ul. Wolfkego", Email = "org@gmail.com", FirstName = "Organizeusz", LastName = "Nowak" };//Rulebook =rulebook1
             context.MainOrganizers.Add(mainOrganizer1);
-            
 
             var competitions = new List<Competition> {
-                new Competition{ID=1,Game=context.Games.Find(1),RegistrationStartDate=new DateTime(1939, 3, 1, 7, 0, 0).Date,Rulebook =rulebook1,MainOrganizer=mainOrganizer1},//nie uda sie zapisać zmian bez MainOragnizer
-                new Competition{ID=2,Game=context.Games.Find(1),RegistrationStartDate=new DateTime(1940, 3, 1, 7, 0, 0).Date,Rulebook=rulebook1,MainOrganizer=mainOrganizer1},
-                new Competition{ID=3,Game=context.Games.Find(1),RegistrationStartDate=new DateTime(1941, 3, 1, 7, 0, 0).Date,RegistrationEndDate=new DateTime(1939, 5, 1, 7, 0, 0).Date,StartDate=new DateTime(1939, 6, 1, 7, 0, 0).Date,EndDate=new DateTime(1939, 7, 1, 7, 0, 0).Date,Rulebook=rulebook1,MainOrganizer=mainOrganizer1}
+                new Competition{ID=1,Game=context.Games.Find(1),RegistrationStartDate=new DateTime(1939, 3, 1, 7, 0, 0).Date,MainOrganizer=mainOrganizer1,Rulebook =rulebook1,CurrentCompetitionState="zakończony"},//nie uda sie zapisać zmian bez MainOragnizer
+                new Competition{ID=2,Game=context.Games.Find(1),RegistrationStartDate=new DateTime(1940, 3, 1, 7, 0, 0).Date,MainOrganizer=mainOrganizer1,Rulebook =rulebook1,CurrentCompetitionState="zakończony"},
+                new Competition{ID=3,Game=context.Games.Find(1),RegistrationStartDate=new DateTime(1941, 3, 1, 7, 0, 0).Date,RegistrationEndDate=new DateTime(1939, 5, 1, 7, 0, 0).Date,Rulebook =rulebook1,StartDate=new DateTime(1939, 6, 1, 7, 0, 0).Date,EndDate=new DateTime(1939, 7, 1, 7, 0, 0).Date,MainOrganizer=mainOrganizer1,CurrentCompetitionState="zakończony"}
             };
             competitions.ForEach(x => context.Competitions.Add(x));
             context.SaveChanges();
