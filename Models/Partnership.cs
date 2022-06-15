@@ -18,7 +18,29 @@ namespace CompetitionManager.Models
         public DateTime StartDate { get; set; }
         [DataType(DataType.Date)]
         public DateTime? EndDate { get; set; }
-        public virtual Team Team { get; set; }
+        private Team team;
+        public virtual Team Team
+        {
+            get
+            {
+                return team;
+            }
+            set
+            {
+                if (player != null)
+                {
+                    if (player.ID == value.Captain.ID)
+                    {
+                        throw new Exception("XOR exception");
+                    }
+                }
+                else
+                {
+                    team = value;
+                }
+            }
+        }
+    
 
         private Player player;
         public virtual Player Player { 
@@ -27,9 +49,12 @@ namespace CompetitionManager.Models
                 return player;
             } set 
             {
-                if (Team.Captain.ID == value.ID)
+                if (team != null)
                 {
-                    throw new Exception("XOR exception");
+                    if (team.Captain.ID == value.ID)
+                    {
+                        throw new Exception("XOR exception");
+                    }
                 }
                 else
                 {

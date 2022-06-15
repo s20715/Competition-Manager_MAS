@@ -16,13 +16,6 @@ namespace CompetitionManager.Models
             this.Partnerships = new HashSet<Partnership>();
             this.Matches = new HashSet<Match>();
         }
-        private Team(CompetitionContext context)
-        {
-            Context = context;
-            this.Partnerships = new HashSet<Partnership>();
-            this.Matches = new HashSet<Match>();
-        }
-        private CompetitionContext Context { get; set; }
 
         public static int MaxPlayers { get {
                 return 6;
@@ -35,7 +28,7 @@ namespace CompetitionManager.Models
                 return captain;
             } 
             set {
-                if (Context.Partnerships.Any(x => x.Player.ID == value.ID))
+                if (Partnerships.Any(x => x.Player.ID == value.ID))
                     throw new Exception("XOR exception");
                 else
                     captain = value;

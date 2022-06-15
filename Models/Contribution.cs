@@ -8,12 +8,13 @@ namespace CompetitionManager.Models
 {
     public class Contribution
     {
+
         public int ID { get; set; }
         [Required]
         public decimal Amount { get; set; }
         [Required]
         public string Contributor { get; set; }
         [Required]
-        public virtual Competition Competition { get; set; }
+        public ICollection<BagContribution> BagContributions { get; set; }
     }
 }

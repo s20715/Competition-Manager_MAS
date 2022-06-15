@@ -95,6 +95,10 @@ namespace CompetitionManager.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            else
+            {
+                ViewBag.ErrorMessage = "Update failed. Try again, and if the problem persists see your system administrator.";
+            }
             return View(helper);
         }
 

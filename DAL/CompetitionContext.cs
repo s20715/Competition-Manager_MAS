@@ -14,6 +14,7 @@ namespace CompetitionManager.DAL
         {
         }
         
+        public DbSet<BagContribution> BagContributions { get; set; }
         public DbSet<Captain> Captains { get; set; }
         public DbSet<Competition> Competitions { get; set; }
         public DbSet<Contribution> Contributions { get; set; }
