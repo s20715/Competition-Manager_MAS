@@ -22,7 +22,15 @@ namespace CompetitionManager.DAL
                 new Helper{ID=2,PESEL="03260369292",Address="Wolfkego",Email="BW@gmail.com",FirstName="Błażej",LastName="Wójcik"},
                 new Helper{ID=3,PESEL="93070311561",Address="Szkolna",Email="KarKow@gmail.com",FirstName="Karyna",LastName="Kowalska"},
                 new Helper{ID=4,PESEL="47042487556",Address="Rajska",Email="Jssa@gmail.com",FirstName="Jessica",LastName="Bentley"},
-                new Helper{ID=5,PESEL="66061165773",Address="Al. Jana Pawła II",Email="JP2@gmail.com",FirstName="Maciek",LastName="Spocony"}
+                new Helper{ID=5,PESEL="66061165773",Address="Al. Jana Pawła II",Email="JP2@gmail.com",FirstName="Maciek",LastName="Spocony"},
+                new Helper{ID=6,PESEL="00000000001",Address="Address",Email="random@gmail.com",FirstName="Helper",LastName="1"},
+                new Helper{ID=7,PESEL="00000000002",Address="Address",Email="random@gmail.com",FirstName="Helper",LastName="2"},
+                new Helper{ID=8,PESEL="00000000003",Address="Address",Email="random@gmail.com",FirstName="Helper",LastName="3"},
+                new Helper{ID=9,PESEL="00000000004",Address="Address",Email="random@gmail.com",FirstName="Helper",LastName="4"},
+                new Helper{ID=10,PESEL="00000000005",Address="Address",Email="random@gmail.com",FirstName="Helper",LastName="5"},
+                new Helper{ID=11,PESEL="00000000006",Address="Address",Email="random@gmail.com",FirstName="Helper",LastName="6"},
+                new Helper{ID=12,PESEL="00000000007",Address="Address",Email="random@gmail.com",FirstName="Helper",LastName="7"}
+
             };
             helpers.ForEach(x => context.Helpers.Add(x));
             context.SaveChanges();

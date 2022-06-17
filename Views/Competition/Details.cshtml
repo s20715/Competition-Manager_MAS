@@ -70,23 +70,25 @@
     <h4>Competition helpers</h4>
     <dl>
         <dd>
-            <table class="table">
-                <tr>
-                    <th>Name</th>
-                    <th>Surname</th>
-                </tr>
-                @foreach (var item in Model.Helpers)
-                {
+            <div style="height: 200px; overflow: auto;">
+                <table class="table">
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FirstName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.LastName)
-                        </td>
+                        <th>Name</th>
+                        <th>Surname</th>
                     </tr>
-                }
-            </table>
+                    @foreach (var item in Model.Helpers)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FirstName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LastName)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
         </dd>
 
     </dl>

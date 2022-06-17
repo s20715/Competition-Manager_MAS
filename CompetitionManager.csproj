@@ -127,6 +127,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CompetitionController.cs" />
+    <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HelperController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ParticipantController.cs" />
@@ -138,6 +139,7 @@
     <Compile Include="Models\BagContribution.cs" />
     <Compile Include="Models\Contribution.cs" />
     <Compile Include="Models\DTO\AssignedHelperDTO.cs" />
+    <Compile Include="Models\DTO\HelperOnCompetitionDTO.cs" />
     <Compile Include="Models\DTO\ParticipantFromGuestDTO.cs" />
     <Compile Include="Models\Match.cs" />
     <Compile Include="Models\Captain.cs" />
@@ -200,7 +202,6 @@
     <Content Include="Views\Helper\Details.cshtml" />
     <Content Include="Views\Helper\Edit.cshtml" />
     <Content Include="Views\Helper\Index.cshtml" />
-    <Content Include="Views\Helper\CreateOnCompetition.cshtml" />
     <Content Include="Views\Participant\Create.cshtml" />
     <Content Include="Views\Participant\Delete.cshtml" />
     <Content Include="Views\Participant\Details.cshtml" />
@@ -212,11 +213,12 @@
     <Content Include="Views\Competition\Details.cshtml" />
     <Content Include="Views\Competition\Edit.cshtml" />
     <Content Include="Views\Competition\Index.cshtml" />
-    <Content Include="Views\Competitions123\Create.cshtml" />
-    <Content Include="Views\Competitions123\Delete.cshtml" />
-    <Content Include="Views\Competitions123\Details.cshtml" />
-    <Content Include="Views\Competitions123\Edit.cshtml" />
-    <Content Include="Views\Competitions123\Index.cshtml" />
+    <Content Include="Views\Game\Create.cshtml" />
+    <Content Include="Views\Game\Delete.cshtml" />
+    <Content Include="Views\Game\Details.cshtml" />
+    <Content Include="Views\Game\Edit.cshtml" />
+    <Content Include="Views\Game\Index.cshtml" />
+    <Content Include="Views\Competition\CreateHelper.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

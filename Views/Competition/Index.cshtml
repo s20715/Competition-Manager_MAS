@@ -4,27 +4,24 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>List of competitions</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
             Game
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MainOrganizer.PESEL)
+            Organizer's PESEL
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Rulebook.Description)
+            Rulebook
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.StartDate)
+            Start date 
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EndDate)
+            End date
         </th>
         <th></th>
     </tr>
@@ -38,7 +35,7 @@
             @Html.DisplayFor(modelItem => item.MainOrganizer.PESEL)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.RegistrationEndDate)
+            @Html.DisplayFor(modelItem => item.Rulebook.Description)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.StartDate)
@@ -54,4 +51,7 @@
     </tr>
 }
 
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
 </table>

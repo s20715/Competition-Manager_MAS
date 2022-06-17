@@ -16,14 +16,14 @@ namespace CompetitionManager.Controllers
     {
         private CompetitionContext db = new CompetitionContext();
 
-        // GET: Competitions123
+        // GET: Competition
         public ActionResult Index()
         {
             var competitions = db.Competitions.Include(c => c.Game).Include(c => c.MainOrganizer).Include(c => c.Rulebook);
             return View(competitions.ToList());
         }
 
-        // GET: Competitions123/Details/5
+        // GET: Competition/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -38,7 +38,7 @@ namespace CompetitionManager.Controllers
             return View(competition);
         }
 
-        // GET: Competitions123/Create
+        // GET: Competition/Create
         public ActionResult Create()
         {
             ViewBag.GameID = new SelectList(db.Games, "ID", "Name");
@@ -47,7 +47,7 @@ namespace CompetitionManager.Controllers
             return View();
         }
 
-        // POST: Competitions123/Create
+        // POST: Competition/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -67,7 +67,7 @@ namespace CompetitionManager.Controllers
             return View(competition);
         }
 
-        // GET: Competitions123/Edit/5
+        // GET: Competition/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -86,7 +86,7 @@ namespace CompetitionManager.Controllers
             return View(competition);
         }
 
-        // POST: Competitions123/Edit/5
+        // POST: Competition/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -108,7 +108,7 @@ namespace CompetitionManager.Controllers
             return View(competition);
         }
 
-        // GET: Competitions123/Delete/5
+        // GET: Competition/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -123,7 +123,7 @@ namespace CompetitionManager.Controllers
             return View(competition);
         }
 
-        // POST: Competitions123/Delete/5
+        // POST: Competition/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -133,6 +133,46 @@ namespace CompetitionManager.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        [ActionName("CreateHelper")]
+        public ActionResult CreateHelperOnCompetition(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var dto = new HelperOnCompetitionDTO();
+            dto.CompetitionId = id.Value;
+            return View(dto);
+        }
+
+        // POST: Helper/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost, ActionName("CreateHelper")]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateHelperOnCompetition(HelperOnCompetitionDTO helperOnCompetitionDTO)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+
+                    db.Helpers.Add(helperOnCompetitionDTO.Helper);
+                    var c=db.Competitions.Find(helperOnCompetitionDTO.CompetitionId);
+                    c.Helpers.Add(helperOnCompetitionDTO.Helper);
+                    db.SaveChanges();
+                    return RedirectToAction("Details/"+helperOnCompetitionDTO.CompetitionId);
+                }
+            }
+            catch (DataException /* dex */)
+            {
+                //Log the error (uncomment dex variable name and add a line here to write a log.
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+            }
+
+            return View(helperOnCompetitionDTO);
+        }
+
 
         protected override void Dispose(bool disposing)
         {

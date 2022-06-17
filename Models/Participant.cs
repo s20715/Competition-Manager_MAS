@@ -12,10 +12,12 @@ namespace CompetitionManager.Models
         {
 
         }
-        public Participant(Guest guest,string email, DateTime DateOfBirth)
+        public Participant(Guest _guest,string _email, DateTime _dateOfBirth)
         {
-            FirstName = guest.FirstName;
-            LastName = guest.LastName;
+            FirstName = _guest.FirstName;
+            LastName = _guest.LastName;
+            Email = _email;
+            DateOfBirth = _dateOfBirth;
         }
         [Required]
         public string Email { get; set; }
