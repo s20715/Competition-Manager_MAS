@@ -18,7 +18,9 @@ namespace CompetitionManager.Models
         [NotMapped]
         public List<string> Creators { 
             get {
-                return CreatorsString.Split(';').ToList<string>();
+                var list = CreatorsString.Split(';').ToList<string>();
+                list.Sort();
+                return list;
             } 
             set {
                 string creatorsString = "";

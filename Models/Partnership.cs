@@ -27,9 +27,9 @@ namespace CompetitionManager.Models
             }
             set
             {
-                if (player != null)
+                if (player != null && value.Captain!=null)
                 {
-                    if (player.ID == value.Captain.ID)
+                    if (player.Email.ToLower() == value.Captain.Email.ToLower())
                     {
                         throw new Exception("XOR exception");
                     }
@@ -49,9 +49,9 @@ namespace CompetitionManager.Models
                 return player;
             } set 
             {
-                if (team != null)
+                if (team.Captain != null)
                 {
-                    if (team.Captain.ID == value.ID)
+                    if (team.Captain.Email.ToLower() == value.Email.ToLower())
                     {
                         throw new Exception("XOR exception");
                     }

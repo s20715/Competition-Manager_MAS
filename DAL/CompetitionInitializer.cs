@@ -81,6 +81,7 @@ namespace CompetitionManager.DAL
             context.Competitions.Find(1).BagContributions.Add(bags[1]);
             context.Competitions.Find(1).BagContributions.Add(bags[2]);
             context.SaveChanges();
+            //BAG
 
             var participants = new List<Participant>
             {
@@ -96,11 +97,32 @@ namespace CompetitionManager.DAL
             };
             guests.ForEach(x => context.Guests.Add(x));
             context.SaveChanges();
+
+            //XOR
+            /*
             var captain = new Captain { FirstName = "Jakub", LastName = "Wójcik", DateOfBirth = new DateTime(2000, 2, 1, 7, 0, 0).Date, Email = "jw2@gmail.com", TelephoneNumber = 666555666 };
             var t1 = new Team { };
             context.Captains.Add(captain);
+            t1.Captain = captain;
             context.SaveChanges();
-            //context.Teams.Add(t1);
+            context.Teams.Add(t1);
+            var player = new Player { FirstName = "Jakub", LastName = "Wójcik", DateOfBirth = new DateTime(2000, 2, 1, 7, 0, 0).Date, Email = "jw2@gmail.com" };
+            var partnership = new Partnership { Team = t1, Player = player, StartDate = new DateTime(2000, 3, 1, 7, 0, 0) };
+            context.SaveChanges();
+            //XOR
+            */
+            //
+            
+            Organisation org1 = new Organisation {Name = "Organizacja test", TelephoneNumbers = new List<int> { 122222222, 222222222 } };
+            MainOrganizer mo = new MainOrganizer { FirstName = "Test", LastName="Tstowy", PESEL = "23222323222", Address="ulica", Email = "testowy@gmail.com", Organisation = org1 };
+            context.MainOrganizers.Add(mo);
+            context.SaveChanges();
+            //context.MainOrganizers.Remove(mo);//test kompozycji (zakomentować aby działało, odkomentować aby program dawał nullpointer)
+            context.SaveChanges();
+
+            System.Diagnostics.Debug.WriteLine(context.Organisations.Find(org1.OrganisationId).Name);
+            
+
 
         }
         

@@ -17,10 +17,22 @@ namespace CompetitionManager.Models
             this.Matches = new HashSet<Match>();
         }
 
-        public static int MaxPlayers { get {
+        [NotMapped]
+        public  int MaxPlayers { get {
+                if (Matches.FirstOrDefault<Match>() != null)
+                {
+                    if (Matches.FirstOrDefault<Match>().Competition.GameID == 4)
+                        return 4;
+                }
                 return 6;
             }  }
-        public static int MinPlayers { get {
+        [NotMapped]
+        public int MinPlayers { get {
+                if (Matches.FirstOrDefault<Match>() != null)
+                {
+                    if (Matches.FirstOrDefault<Match>().Competition.GameID == 4)
+                        return 3;
+                }
                 return 5;
             } }
         private Captain captain;
@@ -28,7 +40,7 @@ namespace CompetitionManager.Models
                 return captain;
             } 
             set {
-                if (Partnerships.Any(x => x.Player.ID == value.ID))
+                if (Partnerships.Any(x => x.Player.Email.ToLower() == value.Email.ToLower()))
                     throw new Exception("XOR exception");
                 else
                     captain = value;

@@ -19,8 +19,10 @@ namespace CompetitionManager.Controllers
         // GET: Competition
         public ActionResult Index()
         {
+
             var competitions = db.Competitions.Include(c => c.Game).Include(c => c.MainOrganizer).Include(c => c.Rulebook);
             return View(competitions.ToList());
+
         }
 
         // GET: Competition/Details/5
