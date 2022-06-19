@@ -7,9 +7,10 @@ using CompetitionManager.Models;
 
 namespace CompetitionManager.DAL
 {
-    public class CompetitionInitializer : System.Data.Entity.DropCreateDatabaseAlways<CompetitionContext>
+    public class CompetitionInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<CompetitionContext>
     {
-
+        //: System.Data.Entity.DropCreateDatabaseAlways<CompetitionContext>
+        //: System.Data.Entity.DropCreateDatabaseIfModelChanges<CompetitionContext>
         protected override void Seed(CompetitionContext context)
         {
 

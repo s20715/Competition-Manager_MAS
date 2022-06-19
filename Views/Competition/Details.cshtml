@@ -11,11 +11,18 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.MainOrganizer.PESEL)
+            Game name
         </dt>
 
         <dd>
+            @Html.DisplayFor(model => model.Game.Name)
+        </dd>
+        <dt>
             Main organizer PESEL
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MainOrganizer.PESEL)
         </dd>
 
         <dt>
