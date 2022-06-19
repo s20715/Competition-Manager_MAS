@@ -7,7 +7,7 @@ using CompetitionManager.Models;
 
 namespace CompetitionManager.DAL
 {
-    public class CompetitionInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<CompetitionContext>
+    public class CompetitionInitializer : System.Data.Entity.DropCreateDatabaseAlways<CompetitionContext>
     {
         //: System.Data.Entity.DropCreateDatabaseAlways<CompetitionContext>
         //: System.Data.Entity.DropCreateDatabaseIfModelChanges<CompetitionContext>
@@ -30,7 +30,7 @@ namespace CompetitionManager.DAL
                 new Helper{ID=9,PESEL="00000000004",Address="Address",Email="random@gmail.com",FirstName="Helper",LastName="4"},
                 new Helper{ID=10,PESEL="00000000005",Address="Address",Email="random@gmail.com",FirstName="Helper",LastName="5"},
                 new Helper{ID=11,PESEL="00000000006",Address="Address",Email="random@gmail.com",FirstName="Helper",LastName="6"},
-                new Helper{ID=12,PESEL="00000000007",Address="Address",Email="random@gmail.com",FirstName="Helper",LastName="7"}
+                new Helper{PESEL="00000000007",Address="Address",Email="random@gmail.com",FirstName="Helper",LastName="7"}
 
             };
             helpers.ForEach(x => context.Helpers.Add(x));

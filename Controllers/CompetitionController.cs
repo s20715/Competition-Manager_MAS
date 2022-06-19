@@ -93,8 +93,13 @@ namespace CompetitionManager.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,GameID,RegistrationStartDate,RegistrationEndDate,StartDate,EndDate,CurrentCompetitionState,MainOrganizerID")] Competition competition,string[] selectedHelpers)
+        public ActionResult Edit(int? id,string[] selectedHelpers)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var competition = db.Competitions.Find(id);
             if (ModelState.IsValid)
             {
                 db.Entry(competition).State = EntityState.Modified;
@@ -209,10 +214,11 @@ namespace CompetitionManager.Controllers
                 return;
             }
 
+
             var selectedHelpersHS = new HashSet<string>(selectedHelpers);
             var competitionHelpers = new HashSet<int>
-                (competitionToUpdate.Helpers.Select(c => c.ID));
-            foreach (var helper in db.Helpers)
+                (db.Competitions.Find(competitionToUpdate.ID).Helpers.Select(c => c.ID));
+            foreach (Helper helper in db.Helpers)
             {
                 if (selectedHelpersHS.Contains(helper.ID.ToString()))
                 {
@@ -228,6 +234,7 @@ namespace CompetitionManager.Controllers
                         competitionToUpdate.Helpers.Remove(helper);
                     }
                 }
+                
             }
         }
     }

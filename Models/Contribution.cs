@@ -14,7 +14,31 @@ namespace CompetitionManager.Models
         public decimal Amount { get; set; }
         [Required]
         public string Contributor { get; set; }
-        [Required]
+        private ICollection<BagContribution> bagContributions;
+        [Required]//tutaj tak ciekawie dlatego że na diagramie wstawiłem tą relację jako zero or one to many a nie many to many dlatego sprawdzam czy jedno contribution nie idzie do dwóch competition
         public ICollection<BagContribution> BagContributions { get; set; }
+        /*
+        public ICollection<BagContribution> BagContributions { get 
+            {
+                return bagContributions;
+            }
+            set 
+            {
+                if (value.Count > 1)
+                {
+                    int cId = value.First().ComptetitionID;
+                    foreach(BagContribution bg in value)
+                    {
+                        if (bg.ComptetitionID != cId)
+                        {
+                            //value.Remove(bg);//?
+                            throw new Exception("Bag exception");//?
+                        }
+                    }
+                    bagContributions = value;
+                }
+            } 
+        }
+        */
     }
 }

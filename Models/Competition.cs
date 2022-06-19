@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -15,6 +16,7 @@ namespace CompetitionManager.Models
             this.Helpers = new HashSet<Helper>();
             this.Matches = new HashSet<Match>();
             this.BagContributions = new HashSet<BagContribution>();
+            this.HelpersQualifiedRelationship=new Dictionary<int, Helper>();
         }
         public int ID { get; set; }
         [Required]
@@ -40,8 +42,29 @@ namespace CompetitionManager.Models
         public int MainOrganizerID { get; set; }
         
         public virtual MainOrganizer MainOrganizer { get; set; }
+        
+        private Dictionary<int, Helper> helpersQualifiedRelationship;
 
+        [NotMapped]
+        public Dictionary<int,Helper> HelpersQualifiedRelationship { 
+            get
+            {
+                helpersQualifiedRelationship = new Dictionary<int, Helper>();
+                foreach(Helper h in Helpers)
+                {
+                    helpersQualifiedRelationship.Add(h.ID, h);
+                }
+                return helpersQualifiedRelationship;
+            }
+            set
+                {
+                helpersQualifiedRelationship = value;
+                }
+        }
+        
         public virtual ICollection<Helper> Helpers { get; set; }
+
+    
         public virtual ICollection<Match> Matches { get; set; }
         public virtual ICollection<BagContribution> BagContributions { get; set; }
 
