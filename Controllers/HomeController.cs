@@ -26,5 +26,15 @@ namespace CompetitionManager.Controllers
 
             return View();
         }
+        public ActionResult Cld()
+        {
+            ViewBag.Message = "Your class diagram page.";
+            return View();
+        }
+        public ActionResult Ad()
+        {
+            ViewBag.Message = "Your activity diagram page.";
+            return View();
+        }
     }
 }
