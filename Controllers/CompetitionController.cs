@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -100,6 +101,23 @@ namespace CompetitionManager.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var competition = db.Competitions.Find(id);
+            if (TryUpdateModel(competition, "",
+                new string[] { "GameID", "RegistrationStartDate", "RegistrationEndDate","StartDate","EndDate","CurrentCompetitionState","RulebookID","MainOrganizerID" }))
+            {
+                try
+                {
+                    UpdateCompetitionHelpers(selectedHelpers, competition);
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+                catch (RetryLimitExceededException /* dex */)
+                {
+                    //Log the error (uncomment dex variable name and add a line here to write a log.
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                }
+            }
+            /*
             if (ModelState.IsValid)
             {
                 db.Entry(competition).State = EntityState.Modified;
@@ -107,6 +125,7 @@ namespace CompetitionManager.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            */
             
             ViewBag.GameID = new SelectList(db.Games, "ID", "Name", competition.GameID);
             ViewBag.MainOrganizerID = new SelectList(db.MainOrganizers, "ID", "PESEL", competition.MainOrganizerID);
