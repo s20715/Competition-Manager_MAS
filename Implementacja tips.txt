@@ -1,0 +1,3 @@
+jeden do jednego team - captain - linia 39 w CompetitionContext
+kwalifikowana competition-playuer w competition (nie potrafię inaczej tego zrobić w ef)
+bag = bag contribution (dziwnie bo zrobiłem jeden do wiele na diagramie)
